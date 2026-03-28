@@ -1,0 +1,23 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: ap-south-2
+    REPOSITORY_URI: 870388461280.dkr.ecr.ap-south-2.amazonaws.com/my-app
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
+
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t my-app .
+      - docker tag my-app:latest $REPOSITORY_URI:latest
+
+  post_build:
+    commands:
+      - echo Pushing to ECR...
+      - docker push $REPOSITORY_URI:latest

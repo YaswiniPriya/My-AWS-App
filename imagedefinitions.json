@@ -1,0 +1,6 @@
+[
+  {
+    "name": "my-container",
+    "imageUri": "870388461280.dkr.ecr.ap-south-2.amazonaws.com/my-app:latest"
+  }
+]
