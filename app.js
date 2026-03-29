@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Hello from AWS DevOps Project 🚀");
+  res.send("Good morning! Hello from AWS DevOps Project 🚀");
 });
 
 app.listen(3000, () => {
