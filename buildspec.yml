@@ -16,8 +16,14 @@ phases:
       - echo Building Docker image...
       - docker build -t my-app .
       - docker tag my-app:latest $REPOSITORY_URI:latest
+      - mkdir -p build_output
+      - echo "Docker image built successfully" > build_output/info.txt   # create a dummy file
 
   post_build:
     commands:
       - echo Pushing to ECR...
       - docker push $REPOSITORY_URI:latest
+
+artifacts:
+  files:
+    - build_output/**/*
